@@ -122,4 +122,8 @@ public:
 		UI::ShowMessageBox("Prof Maple looks visibly nauseus holding back vomit.\n  He must really not like bugs...");
 		UI::ShowMessageBox("MAPLE", "Forget it! Just meet me in my lab!");
 	}
+
+	static void SmolCreatureLab() {
+
+	}
 };
