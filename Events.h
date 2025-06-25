@@ -176,5 +176,33 @@ public:
 
 	void Battle(Handler player, Handler handler) {
 		UI::ShowMessageBox(handler.GetName() + " approaches!");
+
+		// Player pulls out the first pokemon in their team
+
+		// Rival pulls out first pokemon in their team
+
+		// A coin flip happen
+
+		// Start a loop
+
+		// If the current "turn" is even, the player goes
+
+		// Display a list of actions (FIGHT, RUN, BAG, SMOL)
+
+		// If they pick FIGHT
+
+		// Display a list of moves
+
+		// If they select a move, apply damage
+
+		// Otherwise, the rival goals
+
+		// Pick a "random" available move that still has Pp
+
+		// Deal damage to the player Creature
+
+		// At the end of Each turn, flip the "turn"
+	
+		// Continue flipping turns until app creatures of any trainer have 0 health
 	}
 };
