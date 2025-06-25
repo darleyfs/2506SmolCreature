@@ -61,6 +61,18 @@ public:
 		return type2;
 	}
 
+	int GetCurrentHP() {
+		return currentHp;
+	}
+
+	int GetAttack() {
+		return attack;
+	}
+
+	int GetDefense() {
+		return defense;
+	}
+
 	bool LearnMove(Move move) {
 		bool result = false;
 
@@ -95,5 +107,11 @@ public:
 		}
 
 		return result;
+	}
+
+	void TakeDamage(int damage) {
+		currentHp -= damage;
+
+		UI::ShowMessageBox(name + " took " + std::to_string(damage) + " damage!");
 	}
 };
