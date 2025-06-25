@@ -38,6 +38,6 @@ public:
 		Events::Intro(player, rival);
 		Events::WakeUp(player.GetName());
 		Events::TouchGrass(player.GetName());
-		Events::SmolCreatureLab();
+		Events::SmolCreatureLab(player, rival);
 	}
 };
