@@ -1,0 +1,4 @@
+# folders to ignore
+.vs/*
+x64/*
+WorkLog/*
