@@ -4,12 +4,10 @@
 
 class Events {
 public:
-	static Handler Intro() {
+	static void Intro(Handler& player, Handler& rival) {
 		UI::ShowMessageBox("MAPLE", "Welcome to the Wonderful World of Smol Creatures!");
 		UI::ShowMessageBox("MAPLE", "In this world, we catch smol creatures and make them fight!");
 		UI::ShowMessageBox("MAPLE", "What's your name, trainer?");
-
-		Handler player; // default Handler
 		
 		std::string playerName = UI::PromptUser("Name");
 		player.SetName(playerName);
@@ -20,12 +18,8 @@ public:
 		UI::ShowMessageBox("MAPLE", "The family doesn't really like him, so I forgot his name...");
 		UI::ShowMessageBox("MAPLE", "What WAS his name again?");
 
-		Handler rival; // default Handler
-
 		std::string rivalName = UI::PromptUser("Rival Name");
 		rival.SetName(rivalName);
-
-		return player;
 	}
 
 	static void WakeUp(std::string playerName) {
@@ -123,7 +117,7 @@ public:
 		UI::ShowMessageBox("MAPLE", "Forget it! Just meet me in my lab!");
 	}
 
-	static void SmolCreatureLab() {
+	static void SmolCreatureLab(Handler& player, Handler& rival) {
 
 	}
 };
