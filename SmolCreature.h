@@ -19,6 +19,7 @@ class SmolCreature {
 public:
 	SmolCreature() {
 		name = "";
+		level = -1;
 		attack = -1;
 		defense = -1;
 		special = -1;
@@ -30,9 +31,10 @@ public:
 		moves = std::vector<Move>(4);
 	}
 
-	SmolCreature(std::string _name, int _attack, int _defense, int _special,
+	SmolCreature(std::string _name, int _level, int _attack, int _defense, int _special,
 		int _currentHp, int _maxHp, Type _type1, Type _type2, std::vector<Move> _moves) {
 		name = _name;
+		level = _level;
 		attack = _attack;
 		defense = _defense;
 		special = _special;
@@ -45,6 +47,10 @@ public:
 
 	std::string GetName() {
 		return name;
+	}
+
+	int GetLevel() {
+		return level;
 	}
 
 	Type GetType1() {
