@@ -1,15 +1,14 @@
 #pragma once
 #include "UI.h"
 #include "Handler.h"
+#include "Move.h"
 
 class Events {
 public:
-	static Handler Intro() {
+	static void Intro(Handler& player, Handler& rival) {
 		UI::ShowMessageBox("MAPLE", "Welcome to the Wonderful World of Smol Creatures!");
 		UI::ShowMessageBox("MAPLE", "In this world, we catch smol creatures and make them fight!");
 		UI::ShowMessageBox("MAPLE", "What's your name, trainer?");
-
-		Handler player; // default Handler
 		
 		std::string playerName = UI::PromptUser("Name");
 		player.SetName(playerName);
@@ -20,12 +19,8 @@ public:
 		UI::ShowMessageBox("MAPLE", "The family doesn't really like him, so I forgot his name...");
 		UI::ShowMessageBox("MAPLE", "What WAS his name again?");
 
-		Handler rival; // default Handler
-
 		std::string rivalName = UI::PromptUser("Rival Name");
 		rival.SetName(rivalName);
-
-		return player;
 	}
 
 	static void WakeUp(std::string playerName) {
@@ -121,5 +116,93 @@ public:
 		UI::ShowMessageBox("MAPLE", "There could be BUGS in that grass!");
 		UI::ShowMessageBox("Prof Maple looks visibly nauseus holding back vomit.\n  He must really not like bugs...");
 		UI::ShowMessageBox("MAPLE", "Forget it! Just meet me in my lab!");
+	}
+
+	static void SmolCreatureLab(Handler& player, Handler& rival) {
+		UI::ShowMessageBox(player.GetName() + " enters Prof Maple's weird lab thing...");
+		UI::ShowMessageBox("MAPLE", "Welcome! Now select a pet that you will use to fight people!");
+
+		std::string input = "";
+		int menuChoice = 0;
+
+		SmolCreature fireGuy = SmolCreature("Fireguy", 5, 52, 43, 50, 39, 39, Type::FIRE, Type::NONE, std::vector<Move>(4));
+		SmolCreature splasher = SmolCreature("Splasher", 5, 48, 65, 50, 44, 44, Type::WATER, Type::NONE, std::vector<Move>(4));
+		SmolCreature leafling = SmolCreature("Leafling", 5, 45, 49, 65, 45, 45, Type::GRASS, Type::POISON, std::vector<Move>(4));
+
+		Move scratch("Scratch", 40, 1, 35, Type::NORMAL);
+		Move tackle("Tackle", 40, 1, 35, Type::NORMAL);
+
+		fireGuy.LearnMove(scratch);
+		splasher.LearnMove(tackle);
+		leafling.LearnMove(scratch);
+
+		std::vector<std::string> menuOptions = {
+			fireGuy.GetName(),
+			splasher.GetName(),
+			leafling.GetName()
+		};
+
+		do {
+			system("CLS");
+
+			UI::DisplayMenu("Select a Smol Creature", menuOptions);
+
+			std::cout << "  Choice: ";
+			getline(std::cin, input);
+
+			menuChoice = std::stoi(input);
+
+			switch (menuChoice) {
+			case 1:
+				player.AddSmolCreatureToTeam(fireGuy);
+				rival.AddSmolCreatureToTeam(splasher);
+				break;
+			case 2:
+				player.AddSmolCreatureToTeam(splasher);
+				rival.AddSmolCreatureToTeam(leafling);
+				break;
+			case 3:
+				player.AddSmolCreatureToTeam(leafling);
+				rival.AddSmolCreatureToTeam(fireGuy);
+				break;
+			default:
+				std::cout << "  Invalid choice. Please try again!" << std::endl;
+				std::cin.get();
+				break;
+			}
+
+		} while (menuChoice < 1 || menuChoice > menuOptions.size());
+	}
+
+	void Battle(Handler player, Handler handler) {
+		UI::ShowMessageBox(handler.GetName() + " approaches!");
+
+		// Player pulls out the first pokemon in their team
+
+		// Rival pulls out first pokemon in their team
+
+		// A coin flip happen
+
+		// Start a loop
+
+		// If the current "turn" is even, the player goes
+
+		// Display a list of actions (FIGHT, RUN, BAG, SMOL)
+
+		// If they pick FIGHT
+
+		// Display a list of moves
+
+		// If they select a move, apply damage
+
+		// Otherwise, the rival goals
+
+		// Pick a "random" available move that still has Pp
+
+		// Deal damage to the player Creature
+
+		// At the end of Each turn, flip the "turn"
+	
+		// Continue flipping turns until app creatures of any trainer have 0 health
 	}
 };

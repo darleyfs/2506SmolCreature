@@ -130,7 +130,9 @@
     <ClCompile Include="SmolCreatureDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Damage.h" />
     <ClInclude Include="Events.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Handler.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="SmolCreature.h" />
