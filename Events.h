@@ -1,6 +1,7 @@
 #pragma once
 #include "UI.h"
 #include "Handler.h"
+#include "Move.h"
 
 class Events {
 public:
@@ -118,6 +119,62 @@ public:
 	}
 
 	static void SmolCreatureLab(Handler& player, Handler& rival) {
+		UI::ShowMessageBox(player.GetName() + " enters Prof Maple's weird lab thing...");
+		UI::ShowMessageBox("MAPLE", "Welcome! Now select a pet that you will use to fight people!");
 
+		std::string input = "";
+		int menuChoice = 0;
+
+		SmolCreature fireGuy = SmolCreature("Fireguy", 5, 52, 43, 50, 39, 39, Type::FIRE, Type::NONE, std::vector<Move>(4));
+		SmolCreature splasher = SmolCreature("Splasher", 5, 48, 65, 50, 44, 44, Type::WATER, Type::NONE, std::vector<Move>(4));
+		SmolCreature leafling = SmolCreature("Leafling", 5, 45, 49, 65, 45, 45, Type::GRASS, Type::POISON, std::vector<Move>(4));
+
+		Move scratch("Scratch", 40, 1, 35, Type::NORMAL);
+		Move tackle("Tackle", 40, 1, 35, Type::NORMAL);
+
+		fireGuy.LearnMove(scratch);
+		splasher.LearnMove(tackle);
+		leafling.LearnMove(scratch);
+
+		std::vector<std::string> menuOptions = {
+			fireGuy.GetName(),
+			splasher.GetName(),
+			leafling.GetName()
+		};
+
+		do {
+			system("CLS");
+
+			UI::DisplayMenu("Select a Smol Creature", menuOptions);
+
+			std::cout << "  Choice: ";
+			getline(std::cin, input);
+
+			menuChoice = std::stoi(input);
+
+			switch (menuChoice) {
+			case 1:
+				player.AddSmolCreatureToTeam(fireGuy);
+				rival.AddSmolCreatureToTeam(splasher);
+				break;
+			case 2:
+				player.AddSmolCreatureToTeam(splasher);
+				rival.AddSmolCreatureToTeam(leafling);
+				break;
+			case 3:
+				player.AddSmolCreatureToTeam(leafling);
+				rival.AddSmolCreatureToTeam(fireGuy);
+				break;
+			default:
+				std::cout << "  Invalid choice. Please try again!" << std::endl;
+				std::cin.get();
+				break;
+			}
+
+		} while (menuChoice < 1 || menuChoice > menuOptions.size());
+	}
+
+	void Battle(Handler player, Handler handler) {
+		UI::ShowMessageBox(handler.GetName() + " approaches!");
 	}
 };
