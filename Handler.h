@@ -1,6 +1,7 @@
 #pragma once
 
-#include "SmolCreature.h";
+#include "SmolCreature.h"
+#include "UI.h"
 #include <vector>
 
 class Handler {
@@ -53,6 +54,8 @@ public:
 				// Store creature in team member field
 				team[i] = creature;
 				
+				UI::ShowMessageBox(creature.GetName() + " was added to " + name + "'s team!");
+
 				// Set result to true
 				result = true;
 				
